@@ -1209,6 +1209,11 @@ class Scenario:
         shutil.move(f"{self.path_input_data}/prosumers/hp/hp_{hp_type[0:5]}.json",
                     f"{self.path_scenario}/prosumer/{account['id_user']}/spec_{plant_id}.json")
 
+        # test heating rod
+        meas_hp = {'ts': [], 'hp_q': [], 'hp_p':[], 'hr_q': [], 'cop':[]}
+        with open(f"{self.path_scenario}/prosumer/{account['id_user']}/meas_hp_{plant_id}.json", "w") as write_file:
+            json.dump(meas_hp, write_file)
+
         return hp_plant
 
     def __get_hp_parameters(self, model: str, group_id: int = 0, t_in: int = 0, t_out: int = 0, p_th: int = 0,) \
